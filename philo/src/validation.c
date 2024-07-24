@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   validation.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: nkanaan <marvin@42.fr>                     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/07/24 16:46:48 by nkanaan           #+#    #+#             */
+/*   Updated: 2024/07/24 16:46:49 by nkanaan          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../includes/main.h"
 
 static int	valid_time(char **arg);
@@ -57,7 +69,10 @@ static int	valid_count(int ac)
 		return (print_random("[number_of_times_each_philosopher_must_eat] is optional"));
 	}
 	else if (ac != 5)
+	{
 		print_warning("Did set no. of times to eat");
+		sleep(1);
+	}
 	else
 		return (0);
 }

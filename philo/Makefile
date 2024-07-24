@@ -6,9 +6,9 @@ AUTHOR = nkanaan
 
 CC = gcc
 
-CFLAGS = -Werror -Wall -Wextra -pthread -g -I $(HEADER)
+CFLAGS = -Werror -Wall -Wextra -g -I $(HEADER)
 
-SRCS = philo init validation routine utils/misc utils/colors utils/printing
+SRCS = philo init validation routine utils/misc utils/colors utils/printing utils/print_philos
 
 SRC = $(addprefix src/, $(addsuffix .c, $(SRCS)))
 
