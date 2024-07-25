@@ -23,7 +23,12 @@ void	print_yellow(void)
 	printf("\033[0;33m");
 }
 
-void	print_blue(void)
+void	print_purp(void)
+{
+	printf("\033[0;21m");
+}
+
+void	print_cyan(void)
 {
 	printf("\033[0;36m");
 }

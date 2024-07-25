@@ -28,7 +28,7 @@ int	print_warning(char *str)
 
 int	print_random(char *str)
 {
-	print_blue();
+	print_cyan();
 	printf("-----Message-----\n%s\n\n", str);
 	return (0);
 }

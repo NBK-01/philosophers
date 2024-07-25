@@ -69,10 +69,12 @@ int	validate_args(char **arg, int ac);
 /////////////////////////////////////////*/
 void	print_red(void);
 void	print_yellow(void);
-void	print_blue(void);
+void	print_purp(void);
+void	print_cyan(void);
 void	print_green(void);
 void	test_table(void); // GET BACK TO THIS
 void	print_final(void); // GET BACK TO THIS
+void	header_table(void);
 
 /*/////////////////////////////////////////
 //		ERRORS - ETC.		///

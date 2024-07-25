@@ -14,5 +14,13 @@
 
 int	main(int ac, char **av)
 {
+	int	i = 0;
+
 	validate_args(av, ac - 1);
+	header_table();
+	while (i < 8)
+	{
+		test_table();
+		i++;
+	}
 }
