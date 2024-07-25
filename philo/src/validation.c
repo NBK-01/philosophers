@@ -19,24 +19,23 @@ static int	valid_count(int ac);
 int	validate_args(char **arg, int ac)
 {
 	if (!(valid_count(ac)))
-		return (1);
+		return (0);
 	if (!(valid_format(arg)))
-		return (print_error("Use only digits please :)"));
+		return (print_error("Use only positive integers please :)"));
 	if (!(valid_time(arg)))
-		return (print_error("Please use times under 60ms"));
-	return (0);
+		return (print_error("Please use times over 60ms"));
+	return (1);
 }
 
 static int	valid_time(char **arg)
 {
 	int	i;
 
-	i = 2;
-	while (arg[i])
+	i = 1;
+	while (++i <= 4)
 	{
-		if (ft_atoll(arg[i]) < 59)
+		if (ft_atoll(arg[i]) < 61)
 			return (0);
-		i++;
 	}
 	return (1);
 }
@@ -70,10 +69,9 @@ static int	valid_count(int ac)
 	}
 	else if (ac != 5)
 	{
-		print_warning("Did set no. of times to eat");
+		print_warning("Did not set no. if times to eat");
 		sleep(1);
 	}
-	else
-		return (0);
+	return (1);
 }
 

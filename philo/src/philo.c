@@ -14,6 +14,5 @@
 
 int	main(int ac, char **av)
 {
-	if (validate_args(av, ac - 1) != 0)
-		init_philo(av, ac - 1);
+	validate_args(av, ac - 1);
 }
