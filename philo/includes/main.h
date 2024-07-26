@@ -55,9 +55,16 @@ typedef struct s_philo
 void	init_philo(char **args, int ac);
 
 /*/////////////////////////////////////////
+//		  PHILO			///
+/////////////////////////////////////////*/
+////
+
+/*/////////////////////////////////////////
 //		UTILITY			///
 /////////////////////////////////////////*/
 long	ft_atoll(const char *str);
+char	*ft_itoa(int n);
+char	*ft_strjoin(char const *s1, char const *s2);
 
 /*/////////////////////////////////////////
 //		VALIDATION		///
@@ -74,7 +81,8 @@ void	print_cyan(void);
 void	print_green(void);
 void	test_table(void); // GET BACK TO THIS
 void	print_final(void); // GET BACK TO THIS
-void	header_table(void);
+void	header_table(char *philo);
+void	print_art();
 
 /*/////////////////////////////////////////
 //		ERRORS - ETC.		///

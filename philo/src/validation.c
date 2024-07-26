@@ -74,4 +74,3 @@ static int	valid_count(int ac)
 	}
 	return (1);
 }
-
