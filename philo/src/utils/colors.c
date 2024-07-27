@@ -25,7 +25,7 @@ void	print_yellow(void)
 
 void	print_purp(void)
 {
-	printf("\033[0;21m");
+	printf("\033[0;35m");
 }
 
 void	print_cyan(void)

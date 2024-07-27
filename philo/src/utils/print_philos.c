@@ -12,14 +12,14 @@
 
 #include "../../includes/main.h"
 
-void	header_table(void)
+void	header_table(char *philo)
 {
-	int	column_width = 18;
+	int	column_width = 10;
 
 	print_purp();
-	printf("%-*s | %-*s | %-*s\n", column_width, "Elapsed", column_width, "Philo 1", column_width, "Philo 2");
-	printf("%-*c | %-*c | %-*c\n", column_width, '-', column_width, '-', column_width, '-');
+	printf("%-*s", column_width, philo);
 }
+
 void	test_table(void)
 {
 	int column_width = 18;
