@@ -34,7 +34,7 @@ static int	valid_time(char **arg)
 	i = 1;
 	while (++i <= 4)
 	{
-		if (ft_atoll(arg[i]) < 61)
+		if (to_ms(ft_atoll(arg[i])) < 6e4)
 			return (0);
 	}
 	return (1);

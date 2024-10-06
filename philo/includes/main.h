@@ -20,7 +20,7 @@
 # include <sys/time.h>
 
 /*/////////////////////////////////////////
-//		STRUCTS			///
+//				STRUCTS					///
 /////////////////////////////////////////*/
 typedef struct s_vars
 {
@@ -29,50 +29,52 @@ typedef struct s_vars
 	long	time_to_die;
 	long	time_to_sleep;
 	long	nb_of_times_to_eat;
-	long	forks;
+	long	sim_start;
+	long	sim_end;
 }	t_vars;
 
-typedef	struct s_fork
+typedef struct	s_fork
 {
-	int		id;
+	int				id;
 	pthread_mutex_t	fork;
 }	t_fork;
 
-// TEMPOOOOO
 typedef struct s_philo
 {
+	int		id;
 	float	last_ate;
 	bool	is_dead;
-	int	nb_of_times_ate;
+	int		nb_of_times_ate;
+	bool	full;
 	t_fork	*first_fork;
 	t_fork	*second_fork;
 	t_vars	*vars;
 }	t_philo;
 
 /*/////////////////////////////////////////
-//		  INIT			///
+//				INIT					///
 /////////////////////////////////////////*/
 void	init_philo(char **args, int ac);
 
 /*/////////////////////////////////////////
-//		  PHILO			///
+//				PHILO					///
 /////////////////////////////////////////*/
-////
 
 /*/////////////////////////////////////////
-//		UTILITY			///
+//				UTILITY					///
 /////////////////////////////////////////*/
 long	ft_atoll(const char *str);
 char	*ft_itoa(int n);
 char	*ft_strjoin(char const *s1, char const *s2);
+long	to_ms(long nbr);
 
 /*/////////////////////////////////////////
-//		VALIDATION		///
+//				VALIDATION				///
 /////////////////////////////////////////*/
-int	validate_args(char **arg, int ac);
+int		validate_args(char **arg, int ac);
 
 /*/////////////////////////////////////////
-//		FUN STUFF		///
+//				FUN STUFF				///
 /////////////////////////////////////////*/
 void	print_red(void);
 void	print_yellow(void);
@@ -85,7 +87,7 @@ void	header_table(char *philo);
 void	print_art();
 
 /*/////////////////////////////////////////
-//		ERRORS - ETC.		///
+//				ERRORS - ETC.			///
 /////////////////////////////////////////*/
 int	print_error(char *str);
 int	print_warning(char *str);

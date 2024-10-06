@@ -16,7 +16,7 @@ void	init_vars(char **args, int ac, t_vars *vars);
 
 void	init_philo(char **args, int ac)
 {
-	int	i;
+	int i;
 	t_vars	vars;
 	t_philo	*philo;
 	
@@ -26,10 +26,11 @@ void	init_philo(char **args, int ac)
 void	init_vars(char **args, int ac, t_vars *vars)
 {
 	vars->nb_of_philos = (ft_atoll(args[1]));
-	vars->forks = vars->nb_of_philos;
-	vars->time_to_die = (ft_atoll(args[2]));
-	vars->time_to_eat = (ft_atoll(args[3]));
-	vars->time_to_sleep = (ft_atoll(args[4]));
+	vars->time_to_die = to_ms((ft_atoll(args[2])));
+	vars->time_to_eat = to_ms((ft_atoll(args[3])));
+	vars->time_to_sleep = to_ms((ft_atoll(args[4])));
 	if (ac == 5)
 		vars->nb_of_times_to_eat = (ft_atoll(args[5]));
+	else
+		vars->nb_of_times_to_eat = -42;
 }

@@ -15,5 +15,8 @@
 int	main(int ac, char **av)
 {
 	print_art();
-	validate_args(av, ac - 1);
+	if (!validate_args(av, ac - 1))
+		exit(1);
+	else
+		init_philo(av, ac - 1);
 }
