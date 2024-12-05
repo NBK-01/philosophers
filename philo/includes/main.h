@@ -22,34 +22,41 @@
 /*/////////////////////////////////////////
 //				STRUCTS					///
 /////////////////////////////////////////*/
-typedef struct s_vars
-{
-	long	nb_of_philos;
-	long	time_to_eat;
-	long	time_to_die;
-	long	time_to_sleep;
-	long	nb_of_times_to_eat;
-	long	sim_start;
-	long	sim_end;
-}	t_vars;
-
 typedef struct	s_fork
 {
 	int				id;
 	pthread_mutex_t	fork;
 }	t_fork;
 
-typedef struct s_philo
-{
-	int		id;
-	float	last_ate;
-	bool	is_dead;
-	int		nb_of_times_ate;
-	bool	full;
-	t_fork	*first_fork;
-	t_fork	*second_fork;
-	t_vars	*vars;
+typedef struct s_vars {
+	long	nb_of_philos;
+	long	time_to_eat;
+	long	time_to_die;
+	long	time_to_sleep;
+	long	nb_of_times_to_eat;
+}	t_vars;
+
+typedef struct s_philo {
+	int			id;
+	float		last_ate;
+	bool		is_dead;
+	int			nb_of_times_ate;
+	bool		full;
+	t_fork		*fork_one;
+	t_fork		*fork_two;
+	pthread_t	tid;
+	t_vars		*vars;
 }	t_philo;
+
+typedef struct s_routine {
+	t_philo	*philos;
+	t_fork	*forks;
+	t_vars	*vars;
+	long	sim_start;
+	bool	sim_end;
+}	t_routine;
+
+
 
 /*/////////////////////////////////////////
 //				INIT					///
@@ -67,6 +74,9 @@ long	ft_atoll(const char *str);
 char	*ft_itoa(int n);
 char	*ft_strjoin(char const *s1, char const *s2);
 long	to_ms(long nbr);
+int		ft_strcmp(const char *s1, const char *s2);
+void	*ft_mutex(char *action, pthread_mutex_t *mutex);
+
 
 /*/////////////////////////////////////////
 //				VALIDATION				///
