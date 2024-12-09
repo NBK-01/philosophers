@@ -12,6 +12,7 @@
 
 #include "../../includes/main.h"
 
+/*misc stuff mostly unused*/
 void	header_table(char *philo)
 {
 	int	column_width = 10;
@@ -20,6 +21,7 @@ void	header_table(char *philo)
 	printf("%-*s", column_width, philo);
 }
 
+/*don't know what this was*/
 void	test_table(void)
 {
 	int column_width = 18;
@@ -28,6 +30,8 @@ void	test_table(void)
 	printf("%-*d | %-*s | %.*s\n", column_width, 10, column_width, "is eating", column_width, "is sleeping");
 }
 
+
+/*will probably not use, was a cool idea at the time*/
 void	print_final(void)
 {
 	print_success("All done, here's an overview");

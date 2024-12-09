@@ -13,6 +13,9 @@
 
 #include "../../includes/main.h"
 
+
+/*dont do this and define macros for this stuff like a normal sane person
+ * I didnt't know any better back then */
 void	print_red(void)
 {
 	printf("\033[1;31m");

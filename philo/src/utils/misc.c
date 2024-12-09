@@ -12,6 +12,7 @@
 
 #include "../../includes/main.h"
 
+/*utility function char to longlong, integer to str and more*/
 long	ft_atoll(const char *str)
 {
 	long	result;

@@ -8,7 +8,7 @@ CC = gcc
 
 CFLAGS = -Werror -Wall -Wextra -g -I $(HEADER)
 
-SRCS = philo init validation routine utils utils/misc utils/colors utils/printing utils/print_philos
+SRCS = philo init validation routine utils utils/misc utils/colors utils/printing utils/print_philos utils/time
 
 SRC = $(addprefix src/, $(addsuffix .c, $(SRCS)))
 

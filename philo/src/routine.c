@@ -10,3 +10,16 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "../includes/main.h"
+#include <stdint.h>
+#include <stdio.h>
+
+void	*routine(void *routine)
+{
+	t_routine	*data;
+
+	data = (t_routine *)routine;
+	printf("Hello world");
+
+	return (NULL);
+}

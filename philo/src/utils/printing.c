@@ -12,6 +12,8 @@
 
 #include "../../includes/main.h"
 
+
+/*fun ascii printing funcs*/
 int	print_error(char *str)
 {
 	print_red();

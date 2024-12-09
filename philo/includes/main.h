@@ -18,6 +18,7 @@
 # include <stdio.h>
 # include <stdbool.h>
 # include <sys/time.h>
+# include <stdint.h>
 
 /*/////////////////////////////////////////
 //				STRUCTS					///
@@ -62,27 +63,25 @@ typedef struct s_routine {
 //				INIT					///
 /////////////////////////////////////////*/
 void	init_philo(char **args, int ac);
-
 /*/////////////////////////////////////////
 //				PHILO					///
 /////////////////////////////////////////*/
-
+void	*routine(void *routine);
 /*/////////////////////////////////////////
 //				UTILITY					///
 /////////////////////////////////////////*/
-long	ft_atoll(const char *str);
-char	*ft_itoa(int n);
-char	*ft_strjoin(char const *s1, char const *s2);
-long	to_ms(long nbr);
-int		ft_strcmp(const char *s1, const char *s2);
-void	*ft_mutex(char *action, pthread_mutex_t *mutex);
-
-
+long		ft_atoll(const char *str);
+char		*ft_itoa(int n);
+char		*ft_strjoin(char const *s1, char const *s2);
+long		to_ms(long nbr);
+int			ft_strcmp(const char *s1, const char *s2);
+void		*ft_mutex(char *action, pthread_mutex_t *mutex);
+void		ft_usleep(void);
+int			get_time(void);
 /*/////////////////////////////////////////
 //				VALIDATION				///
 /////////////////////////////////////////*/
-int		validate_args(char **arg, int ac);
-
+int			validate_args(char **arg, int ac);
 /*/////////////////////////////////////////
 //				FUN STUFF				///
 /////////////////////////////////////////*/
@@ -95,7 +94,6 @@ void	test_table(void); // GET BACK TO THIS
 void	print_final(void); // GET BACK TO THIS
 void	header_table(char *philo);
 void	print_art();
-
 /*/////////////////////////////////////////
 //				ERRORS - ETC.			///
 /////////////////////////////////////////*/

@@ -16,6 +16,8 @@ static int	valid_time(char **arg);
 static int	valid_format(char **arg);
 static int	valid_count(int ac);
 
+
+/*all things validation. validating the args taken in from user*/
 int	validate_args(char **arg, int ac)
 {
 	if (!(valid_count(ac)))

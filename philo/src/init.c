@@ -15,6 +15,7 @@
 void init_vars(char **args, int ac, t_vars *vars);
 void init_mutex(t_vars *vars, t_routine *routine);
 
+/*initializing variables, threads, forks, etc...*/
 void init_philo(char **args, int ac)
 {
 	int i;
@@ -45,23 +46,23 @@ void init_mutex(t_vars *vars, t_routine *routine)
 	}
 }
 
-void	init_threads(t_routine *routine)
+void	init_threads(t_routine *routine_data)
 {
 	int	i;
 	t_philo *philo;
 
 	i = -1;
-	while (++i < routine->vars->nb_of_philos)
+	while (++i < routine_data->vars->nb_of_philos)
 	{
-		philo = routine->philos + i;
+		philo = routine_data->philos + i;
 		philo->id = i - 1;
-		philo->vars = routine->vars;
+		philo->vars = routine_data->vars;
 		philo->is_dead = false;
 		philo->nb_of_times_ate = 0;
 		philo->full = false;
-		philo->fork_one = &routine->forks[i];
-		philo->fork_two = &routine->forks[(i + 1) % routine->vars->nb_of_philos];
-		pthread_create(&philo->tid, NULL, &routine, philo);
+		philo->fork_one = &routine_data->forks[i];
+		philo->fork_two = &routine_data->forks[(i + 1) % routine_data->vars->nb_of_philos];
+		pthread_create(&philo->tid, NULL, routine, philo);
 		i++;
 	}
 }

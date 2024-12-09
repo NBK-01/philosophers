@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   utils.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: nkanaan <marvin@42.fr>                     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/12/06 08:48:11 by nkanaan           #+#    #+#             */
+/*   Updated: 2024/12/06 08:48:12 by nkanaan          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 # include "../includes/main.h"
 
 int	ft_strcmp(const char *s1, const char *s2)
@@ -14,11 +26,7 @@ int	ft_strcmp(const char *s1, const char *s2)
 	return (0);
 }
 
-long	to_ms(long nbr)
-{
-	return (nbr * 1e3);
-}
-
+/*mutex helper func, takes in args depending on action needed*/
 void	*ft_mutex(char *action, pthread_mutex_t *mutex)
 {
 	if (ft_strcmp(action, "lock") == 0)
