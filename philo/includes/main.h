@@ -1,105 +1,69 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   main.h                                             :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: nkanaan <marvin@42.fr>                     +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/24 16:46:15 by nkanaan           #+#    #+#             */
-/*   Updated: 2024/07/24 16:46:18 by nkanaan          ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #ifndef MAIN_H
 # define MAIN_H
-# include <stdlib.h>
+
 # include <pthread.h>
-# include <unistd.h>
 # include <stdio.h>
 # include <stdbool.h>
 # include <sys/time.h>
 # include <stdint.h>
+# include <stdlib.h>
+# include <unistd.h>
 
-/*/////////////////////////////////////////
-//				STRUCTS					///
-/////////////////////////////////////////*/
-typedef struct	s_fork
-{
-	int				id;
-	pthread_mutex_t	fork;
-}	t_fork;
+/*---------------------------------------*/
+/***********   DEFINITIONS    ************/
+/*---------------------------------------*/
 
-typedef struct s_vars {
-	long	nb_of_philos;
-	long	time_to_eat;
-	long	time_to_die;
-	long	time_to_sleep;
-	long	nb_of_times_to_eat;
-}	t_vars;
+/*-------------------------------COLORS*/
+#define RESET	"\033[0m"
+#define RED		"\033[31m"
+#define GREEN	"\033[32m"
+#define YELLOW	"\033[33m"
+#define BLUE	"\033[34m"
+#define MAGENTA	"\033[35m"
+#define CYAN	"\033[36m"
 
+/*-------------------------------ERRORS*/
+#define ERROR			0
+#define SUCCESS			1
+#define WARNING			42
+
+/*-------------------------------LIMITS*/
+#define MAX_PHILO	200
+#define MIN_TIME	60
+
+/*-------------------------------ACTIONS*/
+#define EATING		2
+#define THINKING	3
+#define SLEEPING	4
+#define TAKE_FORK	5
+
+/*-------------------------------ACTIONS*/
+#define INIT	6
+#define DESTROY	7
+#define JOIN	8
+#define LOCK	9
+#define UNLOCK	10
+
+/*---------------------------------------*/
+/*********     REDEFINITIONS    **********/
+/*---------------------------------------*/
+typedef pthread_mutex_t	t_mutex;
+
+/*---------------------------------------*/
+/*********		 STRUCTS		 *********/
+/*****************************************/
 typedef struct s_philo {
-	int			id;
-	float		last_ate;
-	bool		is_dead;
-	int			nb_of_times_ate;
-	bool		full;
-	t_fork		*fork_one;
-	t_fork		*fork_two;
-	pthread_t	tid;
-	t_vars		*vars;
 }	t_philo;
 
-typedef struct s_routine {
-	t_philo	*philos;
-	t_fork	*forks;
-	t_vars	*vars;
-	long	sim_start;
-	bool	sim_end;
-}	t_routine;
+typedef struct s_data {
+	long		time_to_die;
+	long		time_to_eat;
+	long		time_to_sleep;
+	uint32_t	nb_of_times_to_eat;
+	uint32_t	times_ate;
+	long		sim_start;
+	bool		sim_end;
+}	t_data;
 
 
-
-/*/////////////////////////////////////////
-//				INIT					///
-/////////////////////////////////////////*/
-void	init_philo(char **args, int ac);
-/*/////////////////////////////////////////
-//				PHILO					///
-/////////////////////////////////////////*/
-void	*routine(void *routine);
-/*/////////////////////////////////////////
-//				UTILITY					///
-/////////////////////////////////////////*/
-long		ft_atoll(const char *str);
-char		*ft_itoa(int n);
-char		*ft_strjoin(char const *s1, char const *s2);
-long		to_ms(long nbr);
-int			ft_strcmp(const char *s1, const char *s2);
-void		*ft_mutex(char *action, pthread_mutex_t *mutex);
-void		ft_usleep(void);
-int			get_time(void);
-/*/////////////////////////////////////////
-//				VALIDATION				///
-/////////////////////////////////////////*/
-int			validate_args(char **arg, int ac);
-/*/////////////////////////////////////////
-//				FUN STUFF				///
-/////////////////////////////////////////*/
-void	print_red(void);
-void	print_yellow(void);
-void	print_purp(void);
-void	print_cyan(void);
-void	print_green(void);
-void	test_table(void); // GET BACK TO THIS
-void	print_final(void); // GET BACK TO THIS
-void	header_table(char *philo);
-void	print_art();
-/*/////////////////////////////////////////
-//				ERRORS - ETC.			///
-/////////////////////////////////////////*/
-int	print_error(char *str);
-int	print_warning(char *str);
-int	print_random(char *str);
-int	print_success(char *str);
-
-#endif
+#endif // !MAIN_H

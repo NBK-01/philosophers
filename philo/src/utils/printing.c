@@ -1,51 +1,34 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   printing.c                                         :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: nkanaan <marvin@42.fr>                     +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/24 16:47:19 by nkanaan           #+#    #+#             */
-/*   Updated: 2024/07/24 16:47:23 by nkanaan          ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "../../includes/main.h"
 
-
-/*fun ascii printing funcs*/
-int	print_error(char *str)
+void	print_msg(char *msg, int type)
 {
-	print_red();
-	printf("------Error------\n%s\n\n", str);
-	return (0);
+	if (type == ERROR)
+	{
+		write(2, "-", 1);
+		printf("%s------Error------\n%s\n\n%s", RED, msg, RESET);
+	}
+	if (type == WARNING)
+		printf("%s-----Warning-----\n%s\n\n%s", YELLOW, msg, RESET);
+	if (type == SUCCESS)
+		printf("%s-----------------\n%s\n%s", GREEN, msg, RESET);
+	else
+		printf("%s-----Message-----\n%s\n\n%s", CYAN, msg, RESET);
 }
 
-int	print_warning(char *str)
+void	print_final(t_philo *philo)
 {
-	print_yellow();
-	printf("-----Warning-----\n%s\n\n", str);
-	return (0);
-}
+	int column_width = 18;
 
-int	print_random(char *str)
-{
-	print_cyan();
-	printf("-----Message-----\n%s\n\n", str);
-	return (0);
-}
-
-int	print_success(char *str)
-{
-	print_green();
-	printf("-----------------\n%s\n", str);
-	return (0);
+	printf("\n");
+	printf("%-*s | %-*s | %-*s\n", column_width, "Philo 1", column_width, "Philo 2", column_width, "Philo 3");
+	printf("%-*c | %-*c | %-*c\n", column_width, '-', column_width, '-', column_width, '-');
+	printf("%-*s | %-*s | %.*s\n", column_width, "Ate 3 times", column_width, "Ate 3 times", column_width, "Died");
+	printf("\n");
 }
 
 void print_art() 
 {
-	print_cyan();
-	printf(".-------------------------------------------------");
+	printf("%s.-------------------------------------------------", CYAN);
 	printf("---------------.\n");
 	printf("|                                            ");
 	printf("			 |\n");
@@ -67,6 +50,6 @@ void print_art()
 	printf("________/ \\______/  \\______/    |\n");
 	printf("|                                                                |\n");
 	printf("'-----------------------------------");
-	printf("-----------------------------'\n");
+	printf("-----------------------------'\n%s", RESET);
 }
 

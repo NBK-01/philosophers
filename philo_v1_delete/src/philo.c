@@ -13,7 +13,7 @@
 #include "../includes/main.h"
 
 
-/*philo entry point, clean and simple*/
+/*project entry point, clean and simple*/
 int	main(int ac, char **av)
 {
 	print_art();
