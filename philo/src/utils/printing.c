@@ -3,20 +3,18 @@
 void	print_msg(char *msg, int type)
 {
 	if (type == ERROR)
-	{
-		write(2, "-", 1);
 		printf("%s------Error------\n%s\n\n%s", RED, msg, RESET);
-	}
 	if (type == WARNING)
 		printf("%s-----Warning-----\n%s\n\n%s", YELLOW, msg, RESET);
 	if (type == SUCCESS)
 		printf("%s-----------------\n%s\n%s", GREEN, msg, RESET);
-	else
+	if (type == MSG)
 		printf("%s-----Message-----\n%s\n\n%s", CYAN, msg, RESET);
 }
 
 void	print_final(t_philo *philo)
 {
+	(void)philo;
 	int column_width = 18;
 
 	printf("\n");

@@ -1,43 +1,63 @@
 #include "../../includes/main.h"
 #include "../../includes/utils.h"
 
-void	*ft_mutex(void *mutex, int action)
+int	ft_mutex(void *mutex, t_action action)
 {
 
 	if (action == LOCK)
-		pthread_mutex_lock(mutex);
+		return (pthread_mutex_lock(mutex));
 	else if (action == UNLOCK)
-		pthread_mutex_unlock(mutex);
+		return (pthread_mutex_unlock(mutex));
 	else if (action == INIT)
-		pthread_mutex_init(mutex, NULL);
+		return (pthread_mutex_init(mutex, NULL));
 	else if (action == DESTROY)
-		pthread_mutex_destroy(mutex);
-	return (NULL);
+		return (pthread_mutex_destroy(mutex));
+	return (0);
 
 }
-
-void	*ft_malloc(void *ptr, size_t size, uint32_t count)
+void	ft_destroy_mtx(t_routine *routine)
 {
-	if (!ptr || !size || !count)
-		return (NULL);
-	ptr = malloc(size * count);
-	if (!ptr)
+	int	i;
+	
+	i = -1;
+	while (++i < routine->philos->nb_of_philos)
+		ft_mutex(&routine->forks[i], DESTROY);
+	ft_mutex(&routine->eating_mutex, DESTROY);
+	ft_mutex(&routine->logging_mutex, DESTROY);
+}
+
+int	ft_thread(t_thread_id id, t_action action, 
+			  t_routine *routine)
+{
+	if (action == JOIN)
 	{
-		print_msg("Failed allocation", ERROR);
-		exit(ERROR);
+		if (pthread_join(id, NULL) != 0)
+			ft_destroy_mtx(routine);
 	}
-	return (ptr);
+	else if (action == DETACH)
+	{
+		if (pthread_detach(id) != 0)
+			ft_destroy_mtx(routine);
+	}
+	return (0);
 }
 
-void	*ft_calloc(size_t count, size_t size)
+
+long	get_timestamp(void)
 {
-	unsigned char	*temp;
+	struct timeval	time;
+	long			timestamp;
 
-	if (size != 0 && count > 2147483647 / size)
-		return (0);
-	temp = (void *)malloc(count * size);
-	if (!temp)
-		return (NULL);
-	return (temp);
+	gettimeofday(&time, NULL);
+	timestamp = time.tv_sec * 1000 + time.tv_usec / 1000;
+	return (timestamp);
 }
 
+void	ft_sleep(long ms)
+{
+	long	start;
+
+	start = get_timestamp();
+	while (get_timestamp() - start < ms)
+		usleep(333);
+}

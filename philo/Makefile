@@ -8,7 +8,8 @@ CC = gcc
 
 CFLAGS = -Werror -Wall -Wextra -g -I $(HEADER)
 
-SRCS = philo init validation routine utils utils/misc utils/colors utils/printing utils/print_philos utils/time
+SRCS = main init routine validation \
+	   	utils/lib utils/printing utils/wrappers
 
 SRC = $(addprefix src/, $(addsuffix .c, $(SRCS)))
 
@@ -47,7 +48,7 @@ endif
 
 objs/%.o:	src/%.c
 			@mkdir -p $(dir $@)
-			${CC} ${FLAGS} -c $< -o $@
+			${CC} ${CFLAGS} -c $< -o $@
 
 $(NAME):	$(OBJS) $(HEADER)
 			$(CC) $(CFLAGS) $(OBJS) -o $(NAME)

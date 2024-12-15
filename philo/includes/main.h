@@ -15,7 +15,7 @@
 
 /*-------------------------------COLORS*/
 #define RESET	"\033[0m"
-#define RED		"\033[31m"
+#define RED		"\033[1;31m"
 #define GREEN	"\033[32m"
 #define YELLOW	"\033[33m"
 #define BLUE	"\033[34m"
@@ -26,44 +26,63 @@
 #define ERROR			0
 #define SUCCESS			1
 #define WARNING			42
+#define MSG				-42
 
 /*-------------------------------LIMITS*/
 #define MAX_PHILO	200
 #define MIN_TIME	60
 
 /*-------------------------------ACTIONS*/
-#define EATING		2
-#define THINKING	3
-#define SLEEPING	4
-#define TAKE_FORK	5
-
-/*-------------------------------ACTIONS*/
-#define INIT	6
-#define DESTROY	7
-#define JOIN	8
-#define LOCK	9
-#define UNLOCK	10
+typedef enum e_action {
+	EAT,
+	SLEEP,
+	THINK,
+	FORK,
+	DIE,
+	INIT,
+	DESTROY,
+	JOIN,
+	LOCK,
+	UNLOCK,
+	CREATE,
+	DETACH,
+}	t_action;
 
 /*---------------------------------------*/
 /*********     REDEFINITIONS    **********/
 /*---------------------------------------*/
+typedef pthread_t		t_thread_id;
 typedef pthread_mutex_t	t_mutex;
 
 /*---------------------------------------*/
 /*********		 STRUCTS		 *********/
 /*****************************************/
-typedef struct s_philo {
-}	t_philo;
-
 typedef struct s_data {
 	long		time_to_die;
 	long		time_to_eat;
 	long		time_to_sleep;
-	uint32_t	nb_of_times_to_eat;
-	uint32_t	times_ate;
+	long		last_ate;
+	int			times_to_eat;
 	long		sim_start;
-	bool		sim_end;
 }	t_data;
 
+typedef struct s_philo {
+	uint8_t		id;
+	t_thread_id	thread_id;
+	t_mutex		*left_fork;
+	t_mutex		*right_fork;
+	t_mutex		*logging_mutex;
+	t_mutex		*eating_mutex;
+	uint32_t	times_ate;
+	int			nb_of_philos;
+	t_data		*data;
+}	t_philo;
+
+typedef struct s_routine {
+	t_philo		*philos;
+	t_mutex		*forks;
+	t_mutex		logging_mutex;
+	t_mutex		eating_mutex;
+}	t_routine;
 
 #endif // !MAIN_H
