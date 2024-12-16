@@ -26,7 +26,7 @@ static void	*monitor(void *thread)
 			ft_mutex(philos->eating_mutex, LOCK);
 			if (philos[i].data->last_ate + philos[i].data->time_to_die < get_timestamp())
 			{
-				print_msg("died", philos[i].id);
+				/*print_action(int time, char *philo, t_action action)*/
 				ft_mutex(philos->logging_mutex, LOCK);
 				philos->is_dead = 1;
 				ft_mutex(philos->logging_mutex, UNLOCK);

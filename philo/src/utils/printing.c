@@ -1,4 +1,5 @@
 #include "../../includes/main.h"
+#include <stdint.h>
 
 void	print_msg(char *msg, int type)
 {
@@ -12,23 +13,23 @@ void	print_msg(char *msg, int type)
 		printf("%s-----Message-----\n%s\n\n%s", CYAN, msg, RESET);
 }
 
-void	print_action(int time, char *philo, t_action action)
+void	print_action(int time, uint8_t id, t_action action)
 {
 	if (action == SLEEP)
-		printf("%s[%d] ---- %s%s%s is sleeping 💤 %s\n",
-				CYAN, time, RESET, YELLOW, philo, RESET);
+		printf("%s[%d] ---- %s%sphilo [%d] is sleeping 💤 %s\n",
+				CYAN, time, RESET, YELLOW, id, RESET);
 	if (action == THINK)
-		printf("%s[%d] ---- %s%s%s is thinking 🤔 %s\n",
-				CYAN, time, RESET, YELLOW, philo, RESET);
+		printf("%s[%d] ---- %s%sphilo [%d] is thinking 🤔 %s\n",
+				CYAN, time, RESET, YELLOW, id, RESET);
 	if (action == EAT)
-		printf("%s[%d] ---- %s%s%s is eating 🍝 %s\n",
-				CYAN, time, RESET, GREEN, philo, RESET);
+		printf("%s[%d] ---- %s%sphilo [%d] is eating 🍝 %s\n",
+				CYAN, time, RESET, GREEN, id, RESET);
 	if (action == EAT)
-		printf("%s[%d] ---- %s%s%s is taking a fork 🍽️ %s\n",
-				CYAN, time, RESET, BLUE ,philo, RESET);
+		printf("%s[%d] ---- %s%sphilo [%d] is taking a fork 🍽️ %s\n",
+				CYAN, time, RESET, BLUE , id, RESET);
 	if (action == DIE)
-		printf("%s[%d] ---- %s%s%s is dead ☠️  %s\n",
-				CYAN, time, RESET, RED, philo, RESET);
+		printf("%s[%d] ---- %s%sphilo [%d] is dead ☠️  %s\n",
+				CYAN, time, RESET, RED, id, RESET);
 }
 
 void	print_final(t_routine *routine)
