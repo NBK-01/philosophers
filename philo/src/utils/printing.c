@@ -12,15 +12,33 @@ void	print_msg(char *msg, int type)
 		printf("%s-----Message-----\n%s\n\n%s", CYAN, msg, RESET);
 }
 
-void	print_final(t_philo *philo)
+void	print_action(int time, char *philo, t_action action)
 {
-	(void)philo;
+	if (action == SLEEP)
+		printf("%s[%d] ---- %s%s%s is sleeping 💤 %s\n",
+				CYAN, time, RESET, YELLOW, philo, RESET);
+	if (action == THINK)
+		printf("%s[%d] ---- %s%s%s is thinking 🤔 %s\n",
+				CYAN, time, RESET, YELLOW, philo, RESET);
+	if (action == EAT)
+		printf("%s[%d] ---- %s%s%s is eating 🍝 %s\n",
+				CYAN, time, RESET, GREEN, philo, RESET);
+	if (action == EAT)
+		printf("%s[%d] ---- %s%s%s is taking a fork 🍽️ %s\n",
+				CYAN, time, RESET, BLUE ,philo, RESET);
+	if (action == DIE)
+		printf("%s[%d] ---- %s%s%s is dead ☠️  %s\n",
+				CYAN, time, RESET, RED, philo, RESET);
+}
+
+void	print_final(t_routine *routine)
+{
 	int column_width = 18;
 
 	printf("\n");
 	printf("%-*s | %-*s | %-*s\n", column_width, "Philo 1", column_width, "Philo 2", column_width, "Philo 3");
 	printf("%-*c | %-*c | %-*c\n", column_width, '-', column_width, '-', column_width, '-');
-	printf("%-*s | %-*s | %.*s\n", column_width, "Ate 3 times", column_width, "Ate 3 times", column_width, "Died");
+	printf("%-*u | %-*u | %.*s\n", column_width, routine->philos->times_ate, column_width, routine->philos->times_ate, column_width, "Died");
 	printf("\n");
 }
 

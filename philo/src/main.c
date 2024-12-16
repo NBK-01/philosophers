@@ -1,7 +1,6 @@
 #include "../includes/main.h"
 #include "../includes/utils.h"
 #include "../includes/philo.h"
-#include <stdio.h>
 
 static void	initialize(char	*av[], int ac);
 
@@ -34,6 +33,6 @@ static void	initialize(char	*av[], int ac)
 	}
 	init_data(philo, av, ac);
 	init_routine(philo, forks, &routine);
-	start_sim(philo[0].nb_of_philos, &routine);
+	init_sim(philo[0].nb_of_philos, &routine);
 }
 

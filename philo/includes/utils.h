@@ -25,6 +25,7 @@ int		ft_thread(t_thread_id id, t_action action,
 /*****************************************/
 void	print_msg(char *msg, int type);
 void	print_final(t_philo *philo);
+void	print_action(int time, char *philo, t_action action);
 void	print_art(); 
 
 #endif // !UTILS_H

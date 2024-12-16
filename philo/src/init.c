@@ -1,7 +1,6 @@
 #include "../includes/main.h"
 #include "../includes/utils.h"
 #include "../includes/philo.h"
-#include <stdio.h>
 
 void	init_data(t_philo *philo, char **av, int ac)
 {
