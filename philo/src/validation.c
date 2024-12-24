@@ -68,7 +68,6 @@ static int	valid_format(char **arg)
 
 static int	valid_count(int ac)
 {
-	printf("%d\n", ac);
 	if (ac < 4)
 	{
 		print_msg("Arguments expected: [nb of philos] [time to die] [time to eat] [time to sleep]", ERROR);

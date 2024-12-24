@@ -26,8 +26,7 @@ void	ft_destroy_mtx(t_routine *routine)
 	ft_mutex(&routine->logging_mutex, DESTROY);
 }
 
-int	ft_thread(t_thread_id id, t_action action, 
-			  t_routine *routine)
+int	ft_thread(t_thread_id id, t_action action, t_routine *routine) 
 {
 	if (action == JOIN)
 	{
@@ -59,5 +58,5 @@ void	ft_sleep(long ms)
 
 	start = get_timestamp();
 	while (get_timestamp() - start < ms)
-		usleep(333);
+		usleep(500);
 }

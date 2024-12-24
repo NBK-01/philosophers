@@ -33,6 +33,8 @@ static void	initialize(char	*av[], int ac)
 	}
 	init_data(philo, av, ac);
 	init_routine(philo, forks, &routine);
-	init_sim(philo[0].nb_of_philos, &routine);
+	init_sim(philo->nb_of_philos, &routine);
+	ft_destroy_mtx(&routine);
+	return ;
 }
 

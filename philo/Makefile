@@ -8,7 +8,7 @@ CC = gcc
 
 CFLAGS = -Werror -Wall -Wextra -g -I $(HEADER)
 
-SRCS = main init routine validation \
+SRCS = main init routine/routine routine/utils validation \
 	   	utils/lib utils/printing utils/wrappers
 
 SRC = $(addprefix src/, $(addsuffix .c, $(SRCS)))

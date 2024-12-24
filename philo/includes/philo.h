@@ -6,7 +6,7 @@
 /*---------------------------------------*/
 /*********       VALIDATION		**********/
 /*****************************************/
-int	validate_args(char **arg, int ac);
+int		validate_args(char **arg, int ac);
 
 /*---------------------------------------*/
 /*********        INIT			**********/
@@ -18,6 +18,8 @@ void	init_routine(t_philo *philo, t_mutex *forks, t_routine *routine);
 /*********        ROUTINE		**********/
 /*****************************************/
 void	init_sim(int philos, t_routine *routine);
+bool	philos_full(t_philo	*philos);
+void	exec_action(t_philo *philo, t_action action);
 
 /*---------------------------------------*/
 /*********        TBD			**********/

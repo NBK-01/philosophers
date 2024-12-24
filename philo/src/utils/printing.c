@@ -1,5 +1,7 @@
 #include "../../includes/main.h"
+#include "../../includes/utils.h"
 #include <stdint.h>
+
 
 void	print_msg(char *msg, int type)
 {
@@ -13,8 +15,18 @@ void	print_msg(char *msg, int type)
 		printf("%s-----Message-----\n%s\n\n%s", CYAN, msg, RESET);
 }
 
-void	print_action(int time, uint8_t id, t_action action)
+/*void	log_wrapper(t_philo *philo, t_action action)*/
+/*{*/
+/*	long	time;*/
+/**/
+/*	time = get_timestamp() - philo->data->sim_start;*/
+/*	print_action(philo->logging_mutex, time, philo->id, action);*/
+/*}*/
+
+void	print_action(t_mutex *mutex, int time, uint8_t id, t_action action)
 {
+
+	ft_mutex(mutex, LOCK);
 	if (action == SLEEP)
 		printf("%s[%d] ---- %s%sphilo [%d] is sleeping 💤 %s\n",
 				CYAN, time, RESET, YELLOW, id, RESET);
@@ -30,6 +42,7 @@ void	print_action(int time, uint8_t id, t_action action)
 	if (action == DIE)
 		printf("%s[%d] ---- %s%sphilo [%d] is dead ☠️  %s\n",
 				CYAN, time, RESET, RED, id, RESET);
+	ft_mutex(mutex, UNLOCK);
 }
 
 void	print_final(t_routine *routine)

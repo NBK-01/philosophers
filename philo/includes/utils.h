@@ -19,13 +19,13 @@ void	ft_destroy_mtx(t_routine *routine);
 long	get_timestamp(void);
 void	ft_sleep(long ms);
 int		ft_thread(t_thread_id id, t_action action,
-			t_routine *routine);
+			t_routine *routine); 
 /*---------------------------------------*/
 /*********      PRINTING		**********/
 /*****************************************/
 void	print_msg(char *msg, int type);
-void	print_final(t_philo *philo);
-void	print_action(int time, char *philo, t_action action);
+void	print_action(t_mutex *mutex, int time, uint8_t id, t_action action);
+void	print_final(t_routine *routine);
 void	print_art(); 
 
 #endif // !UTILS_H

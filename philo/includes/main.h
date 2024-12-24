@@ -73,7 +73,7 @@ typedef struct s_philo {
 	t_mutex		*right_fork;
 	t_mutex		*logging_mutex;
 	t_mutex		*eating_mutex;
-	uint32_t	times_ate;
+	int			times_ate;
 	int			nb_of_philos;
 	t_data		*data;
 }	t_philo;
