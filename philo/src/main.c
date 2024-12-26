@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: nkanaan <nkanaan@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/12/26 11:25:37 by nkanaan           #+#    #+#             */
+/*   Updated: 2024/12/26 11:25:39 by nkanaan          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../includes/main.h"
 #include "../includes/utils.h"
 #include "../includes/philo.h"
@@ -21,7 +33,7 @@ static void	initialize(char	*av[], int ac)
 	int			i;
 
 	routine.forks = forks;
-	routine.philos = philo;	
+	routine.philos = philo;
 	if (ft_mutex(&routine.logging_mutex, INIT != 0)
 		|| ft_mutex(&routine.eating_mutex, INIT) != 0)
 		ft_destroy_mtx(&routine);
@@ -37,4 +49,3 @@ static void	initialize(char	*av[], int ac)
 	ft_destroy_mtx(&routine);
 	return ;
 }
-

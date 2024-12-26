@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.h                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: nkanaan <nkanaan@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/12/26 11:53:39 by nkanaan           #+#    #+#             */
+/*   Updated: 2024/12/26 11:53:40 by nkanaan          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef MAIN_H
 # define MAIN_H
 
@@ -12,25 +24,24 @@
 /*---------------------------------------*/
 /***********   DEFINITIONS    ************/
 /*---------------------------------------*/
-
 /*-------------------------------COLORS*/
-#define RESET	"\033[0m"
-#define RED		"\033[1;31m"
-#define GREEN	"\033[32m"
-#define YELLOW	"\033[0;33m"
-#define BLUE	"\033[34m"
-#define MAGENTA	"\033[35m"
-#define CYAN	"\033[0;36m"
+# define RESET	"\033[0m"
+# define RED		"\033[1;31m"
+# define GREEN	"\033[32m"
+# define YELLOW	"\033[0;33m"
+# define BLUE	"\033[34m"
+# define MAGENTA	"\033[35m"
+# define CYAN	"\033[0;36m"
 
 /*-------------------------------ERRORS*/
-#define ERROR			0
-#define SUCCESS			1
-#define WARNING			42
-#define MSG				-42
+# define ERROR				0
+# define SUCCESS			1
+# define WARNING			42
+# define MSG				-42
 
 /*-------------------------------LIMITS*/
-#define MAX_PHILO	200
-#define MIN_TIME	60
+# define MAX_PHILO	200
+# define MIN_TIME	60
 
 /*-------------------------------ACTIONS*/
 typedef enum e_action {

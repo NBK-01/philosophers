@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   routine.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: nkanaan <nkanaan@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/12/26 11:25:50 by nkanaan           #+#    #+#             */
+/*   Updated: 2024/12/26 11:25:57 by nkanaan          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../includes/main.h"
 #include "../../includes/utils.h"
 #include "../../includes/philo.h"
@@ -18,7 +30,8 @@ void	init_sim(int philos, t_routine	*routine)
 	}
 	while (++i < philos)
 	{
-		if (pthread_create(&routine->philos[i].thread_id, NULL, &run_sim, &routine->philos[i]) != 0)
+		if (pthread_create(&routine->philos[i].thread_id, NULL, \
+					&run_sim, &routine->philos[i]) != 0)
 		{
 			print_msg("Failed to create philo thread", ERROR);
 			ft_destroy_mtx(routine);
@@ -30,32 +43,33 @@ void	init_sim(int philos, t_routine	*routine)
 		ft_thread(routine->philos[i].thread_id, DETACH, routine);
 }
 
-void	print_s(t_philo	*philo, char *action)
+void	print_s(t_philo	*philo, t_action action)
 {
 	long	time;
+
 	pthread_mutex_lock(philo->logging_mutex);
 	time = get_timestamp() - philo->data->sim_start;
-	printf(GREEN"[%ld]"RESET" %d%s\n", time, philo->id, action);
+	print_action(philo->logging_mutex, time, philo->id, action);
 	pthread_mutex_unlock(philo->logging_mutex);
 }
 
 void	ft_routine(t_philo *philo)
 {
 	ft_mutex(philo->left_fork, LOCK);
-	log_wrapper(philo, FORK);
+	print_s(philo, FORK);
 	ft_mutex(philo->right_fork, LOCK);
-	log_wrapper(philo, FORK);
+	print_s(philo, FORK);
 	ft_mutex(philo->eating_mutex, LOCK);
-	log_wrapper(philo, EAT);
+	print_s(philo, EAT);
 	philo->data->last_ate = get_timestamp();
 	philo->times_ate += 1;
 	ft_mutex(philo->eating_mutex, UNLOCK);
 	ft_sleep(philo->data->time_to_eat);
 	pthread_mutex_unlock(philo->left_fork);
 	pthread_mutex_unlock(philo->right_fork);
-	print_s(philo, " is sleeping");
+	log_wrapper(philo, SLEEP);
 	ft_sleep(philo->data->time_to_sleep);
-	print_s(philo, " is thinking");
+	log_wrapper(philo, THINK);
 }
 
 static void	*run_sim(void *thread)
@@ -78,7 +92,7 @@ static void	*monitor(void *thread)
 {
 	t_philo	*philos;
 	int		i;
-	
+
 	philos = (t_philo *)thread;
 	while (1)
 	{
@@ -86,7 +100,8 @@ static void	*monitor(void *thread)
 		while (++i < philos->nb_of_philos)
 		{
 			ft_mutex(philos->eating_mutex, LOCK);
-			if (philos[i].data->last_ate + philos[i].data->time_to_die < get_timestamp())
+			if (philos[i].data->last_ate + \
+					philos[i].data->time_to_die < get_timestamp())
 			{
 				ft_mutex(philos->eating_mutex, UNLOCK);
 				log_wrapper(&philos[i], DIE);
