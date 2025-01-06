@@ -6,9 +6,9 @@ AUTHOR = nkanaan
 
 CC = gcc
 
-CFLAGS = -Werror -Wall -Wextra -g -I $(HEADER)
+CFLAGS = -Werror -Wall -Wextra -pthread -g -I $(HEADER)
 
-SRCS = main init routine/routine routine/utils validation \
+SRCS = main init sim/sim sim/utils sim/monitor validation \
 	   	utils/lib utils/logging utils/wrappers utils/time
 
 SRC = $(addprefix src/, $(addsuffix .c, $(SRCS)))
