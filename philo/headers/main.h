@@ -34,7 +34,7 @@
 # define EAT " is eating\n"
 # define SLEEP " is sleeping\n"
 # define THINK " is thinking\n"
-# define DIE " is dead\n"
+# define DIE RED " is dead\n" RESET
 
 /////////////////////////////////////////
 //////////		REDEF		////////////
@@ -70,10 +70,10 @@ typedef enum e_action
 //////////		STRUCTS		////////////
 typedef struct s_philo
 {
-	t_id			thread;
+	t_id			tid;
 	uint32_t		id;
-	uint32_t		eat_count;
-	long			last_ate;
+	int32_t			eat_count;
+	time_t			last_ate;
 	int				left_fork;
 	int				right_fork;
 	t_mtx			mtx_meal;
@@ -84,11 +84,11 @@ typedef struct s_sim
 {
 	t_id				monitor;
 	long				philo_nbr;
-	long				time_to_die;
-	long				time_to_eat;
-	long				time_to_sleep;
-	uint32_t			times_must_eat;
-	long				sim_start;
+	time_t				time_to_die;
+	time_t				time_to_eat;
+	time_t				time_to_sleep;
+	int32_t				times_must_eat;
+	time_t				sim_start;
 	bool				running;
 	t_mtx				mtx_logger;
 	t_mtx				mtx_running;
