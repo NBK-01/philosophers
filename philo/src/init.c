@@ -51,8 +51,8 @@ t_philo	**init_philos(t_sim *sim)
 		if (!philo[i])
 			return (logger(MALLOC, ERR), NULL);
 		ft_mtx(&philo[i]->mtx_meal, MTX_INIT);
-		philo[i]->id = i;
 		philo[i]->sim = sim;
+		philo[i]->id = i;
 		philo[i]->eat_count = 0;	
 		i++;
 	}

@@ -1,5 +1,5 @@
 # include "../../headers/main.h"
-#include <stdio.h>
+# include "../../headers/utils.h"
 
 void	print_art(long nbr)
 {
@@ -23,3 +23,14 @@ void	logger(char *str, t_error status)
 	else if (status == SUCCESS)
 		printf(GREEN "------------SUCCESS--------------\n%s\n" RESET, str);
 }
+
+void	action_logger(char *str, t_philo *philo)
+{
+	long	timestamp;
+
+	ft_mtx(&philo->sim->mtx_logger, MTX_LOCK);
+	timestamp = get_timestamp() - philo->sim->sim_start;
+	printf("----%ld philo [#%d] %s\n", timestamp, philo->id + 1, str);
+	ft_mtx(&philo->sim->mtx_logger, MTX_UNLOCK);
+}
+

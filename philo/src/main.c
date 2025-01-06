@@ -1,29 +1,64 @@
 #include "../headers/main.h"
 #include "../headers/utils.h"
 #include "../headers/philo.h"
+#include <stdio.h>
 
-static bool	initialize(t_sim *sim, char **av)
+static t_sim	*initialize(char **av)
 {
+	t_sim	*sim;
+
 	sim = malloc(sizeof(t_sim));
 	if (!sim)
-		return (logger(MALLOC, ERR), false);
+		return (logger(MALLOC, ERR), NULL);
 	init_data(sim, av);
 	if ((sim->philos = init_philos(sim)) == NULL)
-		return (false);
+		return (NULL);
 	if (!init_mtx(sim))
-		return (false);
-	printf("left fork id is %d\n", sim->philos[0]->left_fork);
+		return (NULL);
 	print_art(sim->philo_nbr);
-	return (true);
+	return (sim);
+}
+
+static void	launch_sim(t_sim *sim)
+{
+	int	i;
+
+	sim->sim_start = get_timestamp() + (sim->philo_nbr * 2 * 10);
+	print_art(sim->sim_start);
+	i = 0;
+	while (i < sim->philo_nbr)
+	{
+		ft_thread(&sim->philos[i]->tid, THRD_CREATE, &simulation, sim->philos[i]);
+		i++;
+	}
+	ft_thread(&sim->monitor, THRD_CREATE, &monitor, sim);
+	return ;
+}
+
+static void	kill_sim(t_sim *sim)
+{
+	int	i;
+
+	i = 0;
+	while (i < sim->philo_nbr)
+	{
+		ft_thread(&sim->philos[i]->tid, THRD_JOIN, NULL, NULL);
+		i++;
+	}
+	ft_thread(&sim->monitor, THRD_JOIN, NULL, NULL);
+	clean_mtx(sim);
+	ft_clean(sim);
 }
 
 int	main(int ac, char *argv[])
 {
-	t_sim	sim;
+	t_sim	*sim;
 
+	sim = NULL;
 	if (!validate_args(ac, argv))
 		ft_exit(NULL,  NULL,  ARG_ERROR, 0);
-	if (!initialize(&sim, argv))
-		ft_exit(&sim, NULL, ERR, 1);
+	sim = initialize(argv);
+	launch_sim(sim);
+	kill_sim(sim);
 	return (EXIT_SUCCESS);
 }

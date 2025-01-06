@@ -25,14 +25,48 @@ int	ft_mtx(t_mtx *mutex, t_action action)
 	return (0);
 }
 
-void	ft_clean(t_sim *sim, t_philo *philo)
+void	*ft_clean(t_sim *sim)
 {
-	free(philo);
+	int	i;
+
+	i = 0;
+	if (!sim)
+		return (NULL);
+	if (sim->forks)
+		free(sim->forks);
+	if (sim->philos)
+	{
+		i = 0;
+		while (i < sim->philo_nbr)
+		{
+			if (sim->philos[i])
+				free(sim->philos[i]);
+			i++;
+		}
+		free(sim->philos);
+	}
 	free(sim);
+	return (NULL);
+}
+
+void	clean_mtx(t_sim *sim)
+{
+	int	i;
+
+	i = 0;
+	while (i < sim->philo_nbr)
+	{
+		ft_mtx(&sim->forks[i], MTX_DESTROY);
+		ft_mtx(&sim->philos[i]->mtx_meal, MTX_DESTROY);
+		i++;
+	}
+	ft_mtx(&sim->mtx_logger, MTX_DESTROY);
+	ft_mtx(&sim->mtx_running, MTX_DESTROY);
 }
 
 void	ft_exit(t_sim *sim, t_philo *philo, t_error error, int free)
 {
+	(void)philo;
 	if (error == ARG_ERROR)
 		printf("philo: exiting due to invalid args....\n");
 	else if (error == THREAD_ERROR)
@@ -42,7 +76,7 @@ void	ft_exit(t_sim *sim, t_philo *philo, t_error error, int free)
 	else if (error == ERR)
 		printf("philo: exiting due to [error]...\n");
 	if (free == 1)
-		ft_clean(sim, philo);
+		ft_clean(sim);
 	else
 		exit(EXIT_FAILURE);
 }
