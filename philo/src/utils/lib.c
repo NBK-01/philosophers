@@ -19,22 +19,23 @@ bool	ft_isvalid(char *str)
 	return (true);
 }
 
-long	ft_atol(const char *str)
-{
-	long	nbr;
-	int		sign;
 
-	nbr = 0;
-	sign = 1;
-	while (*str == ' ' || *str == '\t' || *str == '\n' 
-		|| *str == '\v' || *str == '\f' || *str == '\r')
-		str++;
-	while (*str >= '0' && *str <= '9')
+int	ft_atol(const char *str)
+{
+
+	unsigned long long int	nb;
+	int						i;
+
+	i = 0;
+	nb = 0;
+	while (str[i] && (str[i] >= '0' && str[i] <= '9'))
 	{
-		nbr = nbr * 10 + *str - '0';
-		str++;
+		nb = nb * 10 + (str[i] - '0');
+		i++;
 	}
-	return (nbr * sign);
+	if (nb > INT_MAX)
+		return (-1);
+	return ((int)nb);
 }
 
 

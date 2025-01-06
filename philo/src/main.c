@@ -24,7 +24,6 @@ static void	launch_sim(t_sim *sim)
 	int	i;
 
 	sim->sim_start = get_timestamp() + (sim->philo_nbr * 2 * 10);
-	print_art(sim->sim_start);
 	i = 0;
 	while (i < sim->philo_nbr)
 	{
