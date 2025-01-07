@@ -16,5 +16,6 @@ void	delay(long start_time);
 void	action_logger(char *str, t_philo *philo);
 void	ft_sleep(t_sim *sim, long time);
 void	clean_mtx(t_sim *sim);
+void	print_death(t_philo *philo);
 
 #endif // !UTILS_H

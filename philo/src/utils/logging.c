@@ -13,6 +13,7 @@
 # include "../../headers/main.h"
 # include "../../headers/utils.h"
 # include "../../headers/philo.h"
+#include <stdio.h>
 
 void	print_art(long nbr)
 {
@@ -43,7 +44,21 @@ void	action_logger(char *str, t_philo *philo)
 
 	ft_mtx(&philo->sim->mtx_logger, MTX_LOCK);
 	timestamp = get_timestamp() - philo->sim->sim_start;
-	printf("----%ld philo [#%d] %s\n", timestamp, philo->id + 1, str);
+	ft_mtx(&philo->sim->mtx_running,  MTX_LOCK);
+	if (philo->sim->running)
+		printf("-- %ld philo [#%d] %s\n", timestamp, philo->id + 1, str);
+	ft_mtx(&philo->sim->mtx_running,  MTX_UNLOCK);
 	ft_mtx(&philo->sim->mtx_logger, MTX_UNLOCK);
+}
+
+void print_death(t_philo *philo)
+{
+	long	timestamp;
+
+	ft_mtx(&philo->sim->mtx_logger, MTX_LOCK);
+	timestamp = get_timestamp() - philo->sim->sim_start;
+	printf(BLACK "      %s  ☠️----%ld philo [#%d] has died!----☠️  %s    \n\n", BG_RED, timestamp, philo->id + 1, RESET);
+	ft_mtx(&philo->sim->mtx_logger, MTX_UNLOCK);
+
 }
 

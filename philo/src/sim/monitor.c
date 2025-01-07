@@ -56,7 +56,7 @@ bool	philos_dead(t_philo *philo)
 			ft_mtx(&philo->sim->mtx_running, MTX_LOCK);
 			philo->sim->running = false;
 			ft_mtx(&philo->sim->mtx_running, MTX_UNLOCK);
-			action_logger(DIE, philo);
+			print_death(philo);
 			ft_mtx(&philo->mtx_meal, MTX_UNLOCK);
 			return (true);
 	}

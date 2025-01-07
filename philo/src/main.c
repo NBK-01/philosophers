@@ -43,7 +43,6 @@ static void	launch_sim(t_sim *sim)
 		i++;
 	}
 	ft_thread(&sim->monitor, THRD_CREATE, &monitor, sim);
-	return ;
 }
 
 static void	kill_sim(t_sim *sim)

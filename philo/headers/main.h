@@ -14,13 +14,13 @@
 /////////////////////////////////////////
 //////////		DEFS		////////////
 # define RESET       "\033[0m"
-# define BLACK       "\033[1;30m"
+# define BLACK       "\033[0;30m"
 # define RED         "\033[1;31m"
-# define GREEN       "\033[1;32m"
-# define YELLOW      "\033[1;33m"
-# define MAGENTA     "\033[1;35m"
-# define CYAN        "\033[1;36m"
-# define WHITE       "\033[1;37m"
+# define GREEN       "\033[0;32m"
+# define YELLOW      "\033[0;33m"
+# define MAGENTA     "\033[0;35m"
+# define CYAN        "\033[0;36m"
+# define WHITE       "\033[0;37m"
 # define BG_RED     "\033[41m"
 # define BG_GREEN   "\033[42m"
 # define BG_YELLOW  "\033[43m"
@@ -30,11 +30,10 @@
 # define COUNT "Restrict: use of range [1-200] philos\n"
 # define INVALID_ARG "Args must be positive integers\n"
 # define MALLOC "Malloc failed\n"
-# define FORK " has taken a fork\n"
-# define EAT " is eating\n"
-# define SLEEP " is sleeping\n"
-# define THINK " is thinking\n"
-# define DIE RED " is dead\n" RESET
+# define FORK CYAN" 🍴has taken a fork🍴\n" RESET
+# define EAT GREEN " 🍝is eating🍝\n" RESET
+# define SLEEP YELLOW " 💤is sleeping💤\n" RESET
+# define THINK YELLOW " 🤔is thinking🤔\n" RESET
 
 /////////////////////////////////////////
 //////////		REDEF		////////////
