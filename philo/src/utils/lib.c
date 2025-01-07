@@ -50,4 +50,3 @@ int	ft_atol(const char *str)
 	return ((int)nb);
 }
 
-
