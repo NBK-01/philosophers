@@ -10,7 +10,6 @@
 # include <stdbool.h>
 # include <stdint.h>
 
-
 /////////////////////////////////////////
 //////////		DEFS		////////////
 # define RESET       "\033[0m"
@@ -26,25 +25,24 @@
 # define BG_YELLOW  "\033[43m"
 # define BG_WHITE   "\033[47m"
 
-# define USAGE "Usage: ./philo number_of_philosophers time_to_die time_to_eat time_to_sleep [number_of_times_each_philosopher_must_eat]\n"
+# define USAGE "Usage: ./philo number_of_philosophers time_to_die\
+	time_to_eat time_to_sleep [number_of_times_each_philosopher_must_eat]\n"
 # define COUNT "Restrict: use of range [1-200] philos\n"
 # define INVALID_ARG "Args must be positive integers\n"
 # define MALLOC "Malloc failed\n"
-# define FORK CYAN" 🍴has taken a fork🍴\n" RESET
-# define EAT GREEN " 🍝is eating🍝\n" RESET
-# define SLEEP YELLOW " 💤is sleeping💤\n" RESET
-# define THINK YELLOW " 🤔is thinking🤔\n" RESET
-
+# define FORK "\033[0;36m 🍴has taken a fork🍴\n\033[0m"
+# define EAT  "\033[0;32m 🍝is eating🍝\n\033[0m"
+# define SLEEP "\033[0;33m 💤is sleeping💤\n\033[0m"
+# define THINK "\033[0;33m 🤔is thinking🤔\n\033[0m"
 /////////////////////////////////////////
 //////////		REDEF		////////////
-typedef pthread_mutex_t	t_mtx;
-typedef pthread_t		t_id;
+typedef pthread_mutex_t			t_mtx;
+typedef pthread_t				t_id;
 typedef struct timeval			t_time;
-
-
 /////////////////////////////////////////
 //////////		ENUMS		////////////
-typedef enum e_error {
+typedef enum e_error
+{
 	ARG_ERROR = -1,
 	THREAD_ERROR = -2,
 	MTX_ERROR = -3,
@@ -63,7 +61,6 @@ typedef enum e_action
 	THRD_JOIN,
 	THRD_DETACH,
 }	t_action;
-
 
 /////////////////////////////////////////
 //////////		STRUCTS		////////////
@@ -94,6 +91,5 @@ typedef struct s_sim
 	t_mtx				*forks;
 	t_philo				**philos;
 }	t_sim;
-	
 
 #endif // !MAIN_H

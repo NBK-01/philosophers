@@ -10,7 +10,8 @@ bool	ft_isvalid(char *str);
 void	ft_exit(t_sim *sim, t_philo *philo, t_error error, int free);
 void	logger(char *str, t_error status);
 long	get_timestamp(void);
-int		ft_thread(t_id *thread, t_action action, void *(*func)(void *), void *arg);
+int		ft_thread(t_id *thread, t_action action,
+		void *(*func)(void *), void *arg);
 void	ft_clean(t_sim *sim);
 void	delay(long start_time);
 void	action_logger(char *str, t_philo *philo);
