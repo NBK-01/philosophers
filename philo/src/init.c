@@ -14,7 +14,7 @@
 #include "../headers/utils.h"
 #include <stdbool.h>
 
-static t_mtx *init_forks(t_sim *sim)
+static t_mtx	*init_forks(t_sim *sim)
 {
 	t_mtx	*forks;
 	int		i;
@@ -29,19 +29,20 @@ static t_mtx *init_forks(t_sim *sim)
 		sim->philos[i]->right_fork = (sim->philos[i]->id + 1) % sim->philo_nbr;
 		if (sim->philos[i]->id % 2)
 		{
-			sim->philos[i]->left_fork = (sim->philos[i]->id + 1) % sim->philo_nbr;
+			sim->philos[i]->left_fork = (sim->philos[i]->id + 1)
+				% sim->philo_nbr;
 			sim->philos[i]->right_fork = sim->philos[i]->id;
 		}
 		ft_mtx(&forks[i], MTX_INIT);
 		i++;
 	}
 	return (forks);
-
 }
 
 bool	init_mtx(t_sim *sim)
 {
-	if ((sim->forks = init_forks(sim)) == NULL)
+	sim->forks = init_forks(sim);
+	if (!sim->forks)
 		return (logger(MALLOC, ERR), false);
 	ft_mtx(&sim->mtx_logger, MTX_INIT);
 	ft_mtx(&sim->mtx_running, MTX_INIT);
@@ -50,7 +51,7 @@ bool	init_mtx(t_sim *sim)
 
 t_philo	**init_philos(t_sim *sim)
 {
-	int	i;
+	int		i;
 	t_philo	**philo;
 
 	i = 0;
@@ -65,7 +66,7 @@ t_philo	**init_philos(t_sim *sim)
 		ft_mtx(&philo[i]->mtx_meal, MTX_INIT);
 		philo[i]->sim = sim;
 		philo[i]->id = i;
-		philo[i]->eat_count = 0;	
+		philo[i]->eat_count = 0;
 		i++;
 	}
 	return (philo);

@@ -53,12 +53,12 @@ bool	philos_dead(t_philo *philo)
 	timestamp = get_timestamp();
 	if ((timestamp - philo->last_ate) >= philo->sim->time_to_die)
 	{
-			ft_mtx(&philo->sim->mtx_running, MTX_LOCK);
-			philo->sim->running = false;
-			ft_mtx(&philo->sim->mtx_running, MTX_UNLOCK);
-			print_death(philo);
-			ft_mtx(&philo->mtx_meal, MTX_UNLOCK);
-			return (true);
+		ft_mtx(&philo->sim->mtx_running, MTX_LOCK);
+		philo->sim->running = false;
+		ft_mtx(&philo->sim->mtx_running, MTX_UNLOCK);
+		print_death(philo);
+		ft_mtx(&philo->mtx_meal, MTX_UNLOCK);
+		return (true);
 	}
 	return (false);
 }

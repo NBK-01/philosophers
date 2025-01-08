@@ -23,7 +23,8 @@ static t_sim	*initialize(char **av)
 	if (!sim)
 		return (logger(MALLOC, ERR), NULL);
 	init_data(sim, av);
-	if ((sim->philos = init_philos(sim)) == NULL)
+	sim->philos = init_philos(sim);
+	if (!sim->philos)
 		return (NULL);
 	if (!init_mtx(sim))
 		return (NULL);
@@ -39,7 +40,8 @@ static void	launch_sim(t_sim *sim)
 	i = 0;
 	while (i < sim->philo_nbr)
 	{
-		ft_thread(&sim->philos[i]->tid, THRD_CREATE, &simulation, sim->philos[i]);
+		ft_thread(&sim->philos[i]->tid,
+			THRD_CREATE, &simulation, sim->philos[i]);
 		i++;
 	}
 	ft_thread(&sim->monitor, THRD_CREATE, &monitor, sim);
@@ -66,7 +68,7 @@ int	main(int ac, char *argv[])
 
 	sim = NULL;
 	if (!validate_args(ac, argv))
-		ft_exit(NULL,  NULL,  ARG_ERROR, 0);
+		ft_exit(NULL, NULL, ARG_ERROR, 0);
 	sim = initialize(argv);
 	launch_sim(sim);
 	kill_sim(sim);

@@ -10,7 +10,6 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-
 #include "../../headers/main.h"
 
 int	ft_thread(t_id *thread, t_action action, void *(*func)(void *), void *arg)
@@ -29,11 +28,11 @@ int	ft_mtx(t_mtx *mutex, t_action action)
 	if (action == MTX_INIT)
 		return (pthread_mutex_init(mutex, NULL));
 	else if (action == MTX_LOCK)
-		return(pthread_mutex_lock(mutex));
+		return (pthread_mutex_lock(mutex));
 	else if (action == MTX_UNLOCK)
-		return(pthread_mutex_unlock(mutex));
+		return (pthread_mutex_unlock(mutex));
 	else if (action == MTX_DESTROY)
-		return(pthread_mutex_destroy(mutex));
+		return (pthread_mutex_destroy(mutex));
 	return (0);
 }
 

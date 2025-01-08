@@ -25,7 +25,7 @@ time_t	get_timestamp(void)
 void	ft_sleep(t_sim *sim, time_t time)
 {
 	time_t	start;
-	
+
 	start = get_timestamp() + time;
 	while (get_timestamp() < start)
 	{

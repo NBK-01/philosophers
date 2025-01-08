@@ -31,12 +31,10 @@ bool	ft_isvalid(char *str)
 	return (true);
 }
 
-
 int	ft_atol(const char *str)
 {
-
-	unsigned long long int	nb;
-	int						i;
+	unsigned long	nb;
+	int				i;
 
 	i = 0;
 	nb = 0;
@@ -49,4 +47,3 @@ int	ft_atol(const char *str)
 		return (-1);
 	return ((int)nb);
 }
-
