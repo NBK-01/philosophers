@@ -35,10 +35,7 @@ void	*simulation(void *ptr)
 
 	philo = (t_philo *)ptr;
 	if (philo->sim->times_must_eat == 0)
-	{
-		logger("Give me something to eat, please and thank you", ERR);
 		return (NULL);
-	}
 	ft_mtx(&philo->mtx_meal, MTX_LOCK);
 	philo->last_ate = philo->sim->sim_start;
 	ft_mtx(&philo->mtx_meal, MTX_UNLOCK);

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   utils.h                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: nkanaan <marvin@42.fr>                     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/01/09 09:36:25 by nkanaan           #+#    #+#             */
+/*   Updated: 2025/01/09 09:36:33 by nkanaan          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef UTILS_H
 # define UTILS_H
 
@@ -11,7 +23,7 @@ void	ft_exit(t_sim *sim, t_philo *philo, t_error error, int free);
 void	logger(char *str, t_error status);
 long	get_timestamp(void);
 int		ft_thread(t_id *thread, t_action action,
-		void *(*func)(void *), void *arg);
+			void *(*func)(void *), void *arg);
 void	ft_clean(t_sim *sim);
 void	delay(long start_time);
 void	action_logger(char *str, t_philo *philo);
